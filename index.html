@@ -4,36 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
-    <title>Document</title>
+    <title>Nuevo Reto Bootcamp 2</title>
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenidos</h1>
-        <div class = "controls">
-            <button id="generateBtn" onclick = "generateUsers()">
-                Generar lista de 10 personas
-            </button> 
-        </div>
-
-        <div id = "cargando" class = "cargando">
-            Cargando la lista...
-        </div>
-
-        <div id = "error" class = "error"></div>
+        <h1>Generador de Lista de Personas</h1>
         
-        <div id = "usersContainer" class = "users-grid"></div>
+        <div class="api-info">
+            <h2>API RESTful JSON</h2>
+            <p>Servicio optimizado que consume la API de <strong>randomuser.me</strong><br>
+            Enfoque Front-end con interfaz optimizada y manejo eficiente de datos</p>
+        </div>
+        
+        <div class="controls">
+            <button id="generateBtn" onclick="generateUsers()">
+                Generar 10 Personas Aleatorias
+            </button>
+        </div>
 
+        <div class="status-bar">
+            <div id="cargando" class="cargando">
+                Obteniendo datos de la API...
+            </div>
+            <div id="error" class="error"></div>
+            <div id="stats" class="stats"></div>
+        </div>
+
+        <div id="usersContainer" class="users-grid"></div>
+
+        
     </div>
 
-    
+    <script src="script.js"></script>
 
-
-
-
-    
-
-
-            
 
 </body>
 </html>
