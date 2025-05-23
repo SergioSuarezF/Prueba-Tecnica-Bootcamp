@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family:'Courier New', Courier, monospace;
+    background-color: #008F8C;
+    min-height: 70vh;
+    align-items: center;
+
+}
+
+.container{
+    width: 1300px;
+    margin: 0 auto;
+
+}
+
+h1 {
+    text-align: center;
+    color: #023535;
+    margin-bottom: 30px;
+    font-size: 40px;
+    line-height: 1.2em;
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+button {
+    background: linear-gradient(45deg, #0FC2C0, #0CABA8);
+    color: #fff;
+    border: #fff;
+    padding: 15px 0px 15px 0px;
+    width: 320px;
+    font-size: 20px;
+    line-height: 1.1em;
+
+}
+
+button:hover{
+    transform: translate(-2px);
+    color: #0FC2C0;
+    background: #fff;
+}
