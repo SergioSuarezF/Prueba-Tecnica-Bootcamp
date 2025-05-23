@@ -14,7 +14,7 @@ class RandomUserService {
             const data = await response.json();
             return this.formatUsers(data.results);
         } catch (error) {
-            console.error('Error al obtener usuarios:', error);
+            console.error('Error al obtener los usuarios:', error);
             throw error;
         }
     }
@@ -32,41 +32,52 @@ class RandomUserService {
         }));
     }
 
+    formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+
+
 }
 
-async function ejecutarServicio() {
-    const userService = new RandomUserService();
-    
+const userService = new RandomUserService();
+
+async function generateUsers() {
+    const generateBtn = document.getElementById('generateBtn');
+    const loading = document.getElementById('loading');
+    const error = document.getElementById('error');
+    const container = document.getElementById('usersContainer');
+
+    generateBtn.disabled = true;
+    loading.style.display = 'block';
+    error.style.display = 'none';
+    container.innerHTML = '';
+
     try {
-        console.log('🎭 Generando 10 personas aleatorias...\n');
-        
-        const usuarios = await userService.generateUsers(10);
-        
-        console.log('Lista de 10 personas generada exitosamente:\n');
-        console.log('='.repeat(60));
-        
-        usuarios.forEach((usuario, index) => {
-            console.log(`\n👤 PERSONA ${index + 1}:`);
-            console.log(`   Nombre: ${usuario.nombre}`);
-            console.log(`   Género: ${usuario.genero === 'male' ? '👨 Masculino' : '👩 Femenino'}`);
-            console.log(`   Ubicación: ${usuario.ubicacion}`);
-            console.log(`   Email: ${usuario.correo}`);
-            console.log(`   Fecha de Nacimiento: 🎂 ${usuario.fechaNacimiento}`);
-            console.log(`   Edad: ${usuario.edad} años`);
-            console.log(`   Teléfono: ${usuario.telefono}`);
-            console.log(`   Foto: ${usuario.foto}`);
-            console.log('-'.repeat(40));
-        });
-        
-        return usuarios;
-        
-    } catch (error) {
-        console.error('Error al generar usuarios:', error.message);
-        throw error;
+        const users = await userService.generateUsers(10);
+        displayUsers(users);
+    } catch (err) {
+        showError('Error al cargar los usuarios. Por favor, intenta nuevamente.');
+    } finally {
+        generateBtn.disabled = false;
+        loading.style.display = 'none';
     }
 }
 
-async function obtenerPersonasAleatorias(cantidad = 10) {
-    const userService = new RandomUserService();
-    return await userService.generateUsers(cantidad);
+function displayUsers(users) {
+    const container = document.getElementById('usersContainer');
+    
+    users.forEach((user, index) => {
+        const userCard = createUserCard(user, index);
+        container.appendChild(userCard);
+    });
 }
+
+
+
+
+
